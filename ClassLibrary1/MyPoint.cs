@@ -81,7 +81,6 @@ namespace ClassLibrary1
         {
             /*Если антипод, тогда результат any*/
 
-
             //Перевод градусов в радианы
             double latitude1 = Latitude * Math.PI / 180;
             double latitude2 = point2.Latitude * Math.PI / 180;

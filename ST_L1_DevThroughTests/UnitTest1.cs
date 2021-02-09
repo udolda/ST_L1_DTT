@@ -64,6 +64,7 @@ namespace ST_L1_DevThroughTests
             Assert.InRange(point.getAzimuth(new MyPoint(77.1804, 129.55)), 0, 359.999999);
         }
 
+        //
         [Fact]
         public void AzimuthAntipod1()
         {
