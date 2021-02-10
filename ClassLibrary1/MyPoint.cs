@@ -79,7 +79,24 @@ namespace ClassLibrary1
         /// <returns>Азимут в градусах.</returns>
         public double getAzimuth(MyPoint point2/*double latitude1, double longtitude1, double latitude2, double longtitude2*/)
         {
-            /*Если антипод, тогда результат any*/
+            /*Если точки-аниподы, результат any (комментарий 2)*/
+            if (Math.Abs(Latitude) == Math.Abs(point2.Latitude))
+            {
+                if ((Math.Abs(Longtitude) + Math.Abs(point2.Longtitude) == 180) && (Math.Sign(Longtitude) != Math.Sign(point2.Longtitude)))
+                    return -2.0;
+            }
+
+            /*Если совпадающие точки, результат none (комментарий 3)*/
+            if (Latitude == point2.Latitude && Longtitude == point2.Longtitude) return -1.0;
+
+            /*Если первая точка находится на одном из полюсов (комментарий 4 и 7)*/
+            if (Math.Abs(Latitude) == 90 && Math.Abs(point2.Latitude) != 90) return 180.0;
+
+            /*Если обе точки на одном полюсе (комментарий 5)*/
+            if ((Latitude == 90 && point2.Latitude == 90) || (Latitude == -90 && point2.Latitude == -90)) return -1.0;
+
+            /*Если точки на разных полюсах (комментарий 6)*/
+            if ((Latitude == 90 && point2.Latitude == -90) || (Latitude == -90 && point2.Latitude == 90)) return -2.0;
 
             //Перевод градусов в радианы
             double latitude1 = Latitude * Math.PI / 180;
